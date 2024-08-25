@@ -9,7 +9,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 # Install necessary packages and dependencies
 RUN apt-get update && \
-    apt-get install -y wget git python3 python3.10-venv python3-pip software-properties-common bc curl python3-packaging python3-requests python3-wheel python3-setuptools  build-essential cmake libopenblas-dev liblapack-dev libx11-dev libgtk-3-dev libjpeg-dev libpng-dev libtcmalloc-minimal4
+    apt-get install -y ddd wget git python3 python3.10-venv python3-pip software-properties-common bc curl python3-packaging python3-requests python3-wheel python3-setuptools  build-essential cmake libopenblas-dev liblapack-dev libx11-dev libgtk-3-dev libjpeg-dev libpng-dev libtcmalloc-minimal4
     #libgoogle-perftools-dev
 
 # Set LD_PRELOAD for TCMalloc
@@ -36,11 +36,12 @@ ENV PATH="/home/user/.local/bin:$PATH"
 # install dependencies
 #RUN pip install torch==2.1.1+cu121 --extra-index-url https://download.pytorch.org/whl/cu121
 #RUN pip install torch-2.1.2+cu121-cp310-cp310-linux_x86_64.whl triton-2.1.0-0-cp310-cp310-manylinux2014_x86_64.manylinux_2_17_x86_64.whl
-RUN pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu124
+#RUN pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu124
 #RUN python3 launch.py #--skip-torch-cuda-test
 
 EXPOSE 7860
 ENV NVIDIA_VISIBLE_DEVICES=all
+
 # Run the web UI script on container startup
 CMD ["./webui.sh", "--api", "--listen"]
 #CMD ["./webui.sh", "--api", "--listen", "--port 7860"]
