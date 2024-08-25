@@ -1,0 +1,6 @@
+ 
+./docs/*
+./ollama-local/*
+./open-webui-local/*
+./stable-diffusion-webui/*
+
