@@ -17,3 +17,44 @@ sudo systemctl restart docker
 
  test if it worked
  docker run --rm --runtime=nvidia --gpus all ubuntu nvidia-smi
+
+
+
+# first usage
+
+## add models
+admin panel -> settings -> model
+
+search for mdoels here: https://ollama.com/search?c=code
+add some models, eg
+llama3.1
+mistral:7b
+
+deepseek-coder-v2
+codellama 
+
+llava-llama3 
+
+brxce/stable-diffusion-prompt-generator 
+
+
+## images
+works for me. the trick is to click the samll icon below the response that states "generate image"
+- set engine to automatic1111
+- check url (should be prefilled) 
+- enable
+- set a model
+
+## documents
+? model engine -> ollama
+
+install embedding model
+
+?enable hybrid search
+?install reranking model: baai/bge-reranker-v2-m3
+
+
+## web search
+
+
+# voice

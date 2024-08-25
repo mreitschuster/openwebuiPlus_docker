@@ -54,12 +54,20 @@ services:
   openedai-speech:
     image: ghcr.io/matatonic/openedai-speech
     container_name: openedai-speech
-    env_file: .env
+    
     ports:
       - "8000:8000"
     volumes:
       - ./tts-voices:/app/voices
       - ./tts-config:/app/config
+    environment:
+      - TTS_HOME=voices
+      - HF_HOME=voices
     # labels:
     #   - "com.centurylinklabs.watchtower.enable=true"
     restart: unless-stopped
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - capabilities: ["gpu"]

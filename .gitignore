@@ -20,3 +20,8 @@ stable-diffusion-webui/repositories/*
 stable-diffusion-webui/venv/*
 !stable-diffusion-webui/venv/
 
+tts-config/*
+!tts-config/
+
+tts-voices/*
+!tts-voices/
