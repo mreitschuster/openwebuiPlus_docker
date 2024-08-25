@@ -1,6 +1,6 @@
  
-./docs/*
-./ollama-local/*
-./open-webui-local/*
-./stable-diffusion-webui/*
+docs/*
+ollama-local/*
+open-webui-local/*
+stable-diffusion-webui/*
 
