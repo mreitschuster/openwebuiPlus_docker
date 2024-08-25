@@ -39,6 +39,8 @@ services:
     volumes:
       - ./stable-diffusion-webui/models:/stable-diffusion-webui/models
       - ./stable-diffusion-webui/repositories:/stable-diffusion-webui/repositories
+      - ./stable-diffusion-webui/venv:/stable-diffusion-webui/venv
+
     deploy:
       resources:
         reservations:

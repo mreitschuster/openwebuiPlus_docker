@@ -9,7 +9,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 # Install necessary packages and dependencies
 RUN apt-get update && \
-    apt-get install -y ddd wget git python3 python3.10-venv python3-pip software-properties-common bc curl python3-packaging python3-requests python3-wheel python3-setuptools  build-essential cmake libopenblas-dev liblapack-dev libx11-dev libgtk-3-dev libjpeg-dev libpng-dev libtcmalloc-minimal4
+    apt-get install -y wget git python3 python3.10-venv python3-pip software-properties-common bc curl python3-packaging python3-requests python3-wheel python3-setuptools  build-essential cmake libopenblas-dev liblapack-dev libx11-dev libgtk-3-dev libjpeg-dev libpng-dev libtcmalloc-minimal4
     #libgoogle-perftools-dev
 
 # Set LD_PRELOAD for TCMalloc
