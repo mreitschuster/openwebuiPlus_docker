@@ -1,6 +1,22 @@
  
 docs/*
+!docs/
+
 ollama-local/*
+!ollama-local/
+
 open-webui-local/*
+!open-webui-local/
+
 stable-diffusion-webui/*
+!stable-diffusion-webui/
+
+stable-diffusion-webui/models/*
+!stable-diffusion-webui/models/
+
+stable-diffusion-webui/repositories/*
+!stable-diffusion-webui/repositories/
+
+stable-diffusion-webui/venv/*
+!stable-diffusion-webui/venv/
 
