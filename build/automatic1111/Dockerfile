@@ -34,10 +34,8 @@ USER user
 ENV PATH="/home/user/.local/bin:$PATH"
 
 # install dependencies
-#RUN pip install torch==2.1.1+cu121 --extra-index-url https://download.pytorch.org/whl/cu121
-#RUN pip install torch-2.1.2+cu121-cp310-cp310-linux_x86_64.whl triton-2.1.0-0-cp310-cp310-manylinux2014_x86_64.manylinux_2_17_x86_64.whl
-#RUN pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu124
-#RUN python3 launch.py #--skip-torch-cuda-test
+#RUN pip install --no-cache-dir -r requirements.txt
+RUN bash "./webui.sh" "--exit" "--skip-torch-cuda-test"
 
 EXPOSE 7860
 ENV NVIDIA_VISIBLE_DEVICES=all
