@@ -34,12 +34,10 @@ USER user
 ENV PATH="/home/user/.local/bin:$PATH"
 
 # install dependencies
-#RUN pip install --no-cache-dir -r requirements.txt
-RUN bash "./webui.sh" "--exit" "--skip-torch-cuda-test"
+RUN bash "./webui.sh" "--exit" "--skip-torch-cuda-test" "--xformers"
 
 EXPOSE 7860
 ENV NVIDIA_VISIBLE_DEVICES=all
 
 # Run the web UI script on container startup
 CMD ["./webui.sh", "--api", "--listen"]
-#CMD ["./webui.sh", "--api", "--listen", "--port 7860"]
