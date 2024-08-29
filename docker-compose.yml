@@ -9,12 +9,28 @@ services:
       - "host.docker.internal:host-gateway"
     volumes:
       - ./open-webui-local:/app/backend/data
-      - ./docs:/data/docs
+      - ./docs:/app/backend/data/docs
     environment:
+    # see https://docs.openwebui.com/getting-started/env-configuration#speech-to-text
+      - ENABLE_OPENAI_API=true
+      - OPENAI_API_BASE_URL=http://pipelines:9099
+      - ENABLE_OLLAMA_API=true
+      - OLLAMA_BASE_URL=http://ollama:11434 #http://host.docker.internal:11434
       - WEBUI_AUTH=false
       - AUTOMATIC1111_BASE_URL=http://automatic1111:7860
       - ENABLE_IMAGE_GENERATION=True
-
+      #- RAG_EMBEDDING_ENGINE=ollama
+      #- AUDIO_STT_ENGINE=openai
+      #- AUDIO_TTS_ENGINE=openai
+      - AUDIO_TTS_OPENAI_API_BASE_URL=http://host.docker.internal:8000/v1 #http://openedai-speech:8000 #http://host.docker.internal:8000/v1
+      - AUDIO_TTS_OPENAI_API_KEY="sk-111111111"
+      #- AUDIO_TTS_MODEL="tts-1-hd"
+      #- AUDIO_TTS_VOICE="alloy"
+      - ENABLE_IMAGE_GENERATION=True
+      - IMAGE_GENERATION_ENGINE=automatic1111
+      - AUTOMATIC1111_BASE_URL=http://automatic1111:7860
+      #- IMAGE_STEPS=50
+      #- IMAGE_GENERATION_MODEL="v1-5-pruned-emaonly.safetensors"
 
   ollama:
     image: ollama/ollama:latest  
@@ -23,6 +39,7 @@ services:
       - "11434:11434"
     volumes:
       - ./ollama-local:/root/.ollama
+      #- ./docs:/data/docs
     deploy:
       resources:
         reservations:
@@ -49,8 +66,6 @@ services:
     environment:
       - CUDA_VISIBLE_DEVICES=0
 
-
-
   openedai-speech:
     image: ghcr.io/matatonic/openedai-speech
     container_name: openedai-speech
@@ -71,3 +86,14 @@ services:
         reservations:
           devices:
             - capabilities: ["gpu"]
+
+  pipelines:
+    image: ghcr.io/open-webui/pipelines:main
+    container_name: pipelines
+    ports:
+      - "9099:9099"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - ./pipelines:/app/pipelines
+    restart: always

@@ -56,5 +56,7 @@ install embedding model
 
 ## web search
 
+## pipelines
+
 
 # voice
