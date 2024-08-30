@@ -25,3 +25,6 @@ tts-config/*
 
 tts-voices/*
 !tts-voices/
+
+pipelines/__pycache__/
+build/discord/.env
