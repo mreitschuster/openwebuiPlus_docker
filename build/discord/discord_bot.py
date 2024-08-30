@@ -1,12 +1,17 @@
 import discord
 from discord.ext import commands
 import requests
+import os
 
 # Get bot token from environment variable
 TOKEN = os.environ['DISCORD_BOT_TOKEN']
 
+# Define the intents (required for Discord.py 2.0+)
+intents = discord.Intents.default()
+intents.typing = False  # You can disable any of these if you don't need them
+
 # Create a new instance of the bot class
-bot = commands.Bot(command_prefix='!')
+bot = commands.Bot(command_prefix='!', intents=intents)
 
 @bot.event
 async def on_ready():
