@@ -1,0 +1,11 @@
+
+services:
+  discord-bot:
+    build: .
+    container_name: discord-bot
+    restart: unless-stopped
+    environment:
+      - DISCORD_BOT_TOKEN=${DISCORD_BOT_TOKEN}
+      - OPEN_WEB_UI_URL=${OPEN_WEB_UI_URL}
+    ports:
+      - "8080:8080"
