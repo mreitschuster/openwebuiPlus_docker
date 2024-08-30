@@ -2,7 +2,7 @@ services:
   openWebUI:
     image: ghcr.io/open-webui/open-webui:main
     container_name: open-webui
-    restart: always
+    restart: unless-stopped
     ports:
       - "3000:8080"
     extra_hosts:
@@ -40,6 +40,7 @@ services:
     volumes:
       - ./ollama-local:/root/.ollama
       #- ./docs:/data/docs
+    restart: unless-stopped
     deploy:
       resources:
         reservations:
@@ -50,7 +51,7 @@ services:
   automatic1111:
     build: ./build/automatic1111
     container_name: automatic1111
-    restart: always
+    restart: unless-stopped
     ports:
       - "7860:7860"
     volumes:
@@ -96,4 +97,4 @@ services:
       - "host.docker.internal:host-gateway"
     volumes:
       - ./pipelines:/app/pipelines
-    restart: always
+    restart: unless-stopped
