@@ -16,7 +16,7 @@ services:
       - OPENAI_API_BASE_URL=http://pipelines:9099
       - ENABLE_OLLAMA_API=true
       - OLLAMA_BASE_URL=http://ollama:11434 #http://host.docker.internal:11434
-      - WEBUI_AUTH=false
+      - WEBUI_AUTH=true
       - AUTOMATIC1111_BASE_URL=http://automatic1111:7860
       - ENABLE_IMAGE_GENERATION=True
       #- RAG_EMBEDDING_ENGINE=ollama
@@ -86,7 +86,23 @@ services:
       resources:
         reservations:
           devices:
-            - capabilities: ["gpu"]
+            - driver: nvidia
+              #device_ids: ['0', '1'] # Select a gpu, or
+              count: all
+              capabilities: [gpu]
+
+  searxng:
+    image: searxng/searxng
+    container_name: searxng
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./searxng:/etc/searxng
+    environment:
+      - BASE_URL=http://searxng:8080/
+      - INSTANCE_NAME=my-searxng
+    restart: unless-stopped
+
 
   pipelines:
     image: ghcr.io/open-webui/pipelines:main

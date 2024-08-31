@@ -28,3 +28,7 @@ tts-voices/*
 
 pipelines/__pycache__/
 build/discord/.env
+
+
+searxng/
+prepare/
